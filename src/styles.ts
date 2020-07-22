@@ -140,8 +140,11 @@ function addCursorStyleToBody(cursor: string) {
 function removeStyle(styleElement: HTMLStyleElement) {
 	if (styleElement && typeof (window) !== 'undefined') {
 		const head = window.document.head || window.document.getElementsByTagName("head")[0];
-		if (head.contains(styleElement))
+		try {
 			head.removeChild(styleElement);
+		} catch (e) {
+			console.log(e)
+		}
 	}
 }
 

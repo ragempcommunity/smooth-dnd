@@ -160,7 +160,15 @@ function handleDropAnimation(callback: Function) {
   function endDrop() {
     Utils.removeClass(ghostInfo.ghost, 'animated');
     ghostInfo!.ghost.style.transitionDuration = null!;
-    getGhostParent().removeChild(ghostInfo.ghost);
+    try {
+      getGhostParent().removeChild(ghostInfo.ghost);
+    } catch (e) {
+      // Force Ghost Removal
+      let ghostObject = window.document.querySelector('.smooth-dnd-ghost')
+      if (ghostObject)
+        ghostObject.remove()
+      console.log(e)
+    }
     callback();
   }
 

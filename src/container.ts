@@ -62,8 +62,11 @@ function wrapChildren(element: HTMLElement) {
       wrapper[translationValue] = 0;
       draggables.push(wrapper);
     } else {
-      if (element.contains(child))
+      try {
         element.removeChild(child);
+      } catch (e) {
+        console.log(e)
+      }
     }
   });
   return draggables;
@@ -75,8 +78,11 @@ function unwrapChildren(element: HTMLElement) {
       if (child.nodeType === Node.ELEMENT_NODE) {
         if (hasClass(child, wrapperClass)) {
           element.insertBefore(child.firstElementChild as HTMLElement, child);
-          if (element.contains(child))
-            element.removeChild(child)
+          try {
+            element.removeChild(child);
+          } catch (e) {
+            console.log(e)
+          }
         }
       }
     });
@@ -139,8 +145,12 @@ function resetDraggables({ element, draggables, layout }: ContainerProps) {
     });
 
     if (element[stretcherElementInstance]) {
-      element[stretcherElementInstance].parentNode.removeChild(element[stretcherElementInstance]);
-      element[stretcherElementInstance] = null;
+      try {
+        element[stretcherElementInstance].parentNode.removeChild(element[stretcherElementInstance]);
+        element[stretcherElementInstance] = null;
+      } catch (e) {
+        console.log(e)
+      }
     }
   };
 }
@@ -342,8 +352,11 @@ function drawDropPlaceholder({ layout, element, getOptions }: ContainerProps) {
         }
       } else {
         if (dropPlaceholderContainer && prevAddedIndex !== null) {
-          if (element.contains(dropPlaceholderContainer!))
-          element.removeChild(dropPlaceholderContainer!);
+          try {
+            element.removeChild(dropPlaceholderContainer!);
+          } catch (e) {
+            console.log(e)
+          }
         }
         prevAddedIndex = null;
 
@@ -426,8 +439,11 @@ function handleInsertionSizeChange({ element, draggables, layout, getOptions }: 
           layout.setTranslation(strectherElement, 0);
           let toRemove = strectherElement;
           strectherElement = null;
-          if (element.contains(toRemove))
+          try {
             element.removeChild(toRemove);
+          } catch (e) {
+            console.log(e)
+          }
           element[stretcherElementInstance] = null;
           return {
             containerBoxChanged: true,
@@ -740,8 +756,11 @@ function Container(element: HTMLElement): (options?: ContainerOptions) => IConta
       handleDrop(draggableInfo: DraggableInfo) {
         scrollListener.stop();
         if (dragResult && dragResult.dropPlaceholderContainer) {
-          if (element.contains(dragResult.dropPlaceholderContainer))
+          try {
             element.removeChild(dragResult.dropPlaceholderContainer);
+          } catch (e) {
+            console.log(e)
+          }
         }
         lastDraggableInfo = null;       
         dragHandler = getDragHandler(props);
