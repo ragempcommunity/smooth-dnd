@@ -273,12 +273,12 @@ export const isMobile = () => {
 
 export const clearSelection = () => {
   if (window.getSelection) {
-    if (window.getSelection().empty) {
+    if ((window.getSelection() as any).empty) {
       // Chrome
-      window.getSelection().empty();
-    } else if (window.getSelection().removeAllRanges) {
+      (window.getSelection() as any).empty();
+    } else if ((window.getSelection() as any).removeAllRanges) {
       // Firefox
-      window.getSelection().removeAllRanges();
+      (window.getSelection() as any).removeAllRanges();
     }
   } else if ((window.document as any).selection) {
     // IE?
