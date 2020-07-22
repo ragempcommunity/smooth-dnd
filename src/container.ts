@@ -62,7 +62,8 @@ function wrapChildren(element: HTMLElement) {
       wrapper[translationValue] = 0;
       draggables.push(wrapper);
     } else {
-      element.removeChild(child);
+      if (element.contains(child))
+        element.removeChild(child);
     }
   });
   return draggables;
@@ -74,7 +75,8 @@ function unwrapChildren(element: HTMLElement) {
       if (child.nodeType === Node.ELEMENT_NODE) {
         if (hasClass(child, wrapperClass)) {
           element.insertBefore(child.firstElementChild as HTMLElement, child);
-          element.removeChild(child);
+          if (element.contains(child))
+            element.removeChild(child)
         }
       }
     });
@@ -340,6 +342,7 @@ function drawDropPlaceholder({ layout, element, getOptions }: ContainerProps) {
         }
       } else {
         if (dropPlaceholderContainer && prevAddedIndex !== null) {
+          if (element.contains(dropPlaceholderContainer!))
           element.removeChild(dropPlaceholderContainer!);
         }
         prevAddedIndex = null;
@@ -423,7 +426,8 @@ function handleInsertionSizeChange({ element, draggables, layout, getOptions }: 
           layout.setTranslation(strectherElement, 0);
           let toRemove = strectherElement;
           strectherElement = null;
-          element.removeChild(toRemove);
+          if (element.contains(toRemove))
+            element.removeChild(toRemove);
           element[stretcherElementInstance] = null;
           return {
             containerBoxChanged: true,
@@ -736,7 +740,8 @@ function Container(element: HTMLElement): (options?: ContainerOptions) => IConta
       handleDrop(draggableInfo: DraggableInfo) {
         scrollListener.stop();
         if (dragResult && dragResult.dropPlaceholderContainer) {
-          element.removeChild(dragResult.dropPlaceholderContainer);
+          if (element.contains(dragResult.dropPlaceholderContainer))
+            element.removeChild(dragResult.dropPlaceholderContainer);
         }
         lastDraggableInfo = null;       
         dragHandler = getDragHandler(props);
