@@ -239,7 +239,9 @@ export const debounce = (fn: Function, delay: number, immediate: boolean) => {
 };
 
 export const removeChildAt = (parent: HTMLElement, index: number) => {
-  return parent.removeChild(parent.children[index]);
+  if (parent.children[index] != null)
+    return parent.removeChild(parent.children[index]);
+  return null
 };
 
 export const addChildAt = (parent: HTMLElement, child: HTMLElement, index: number) => {
