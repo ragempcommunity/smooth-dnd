@@ -1,7 +1,7 @@
 {
-  "name": "@tutagomes/smooth-dnd",
-  "version": "0.12.8",
-  "description": "Drag and Drop library",
+  "name": "@test137e29b/smooth-dnd",
+  "version": "0.12.11",
+  "description": "Drag and Drop library, with fix for .setDraggables of undefined",
   "main": "./dist/index.js",
   "scripts": {
     "bundle": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
@@ -21,11 +21,11 @@
     "draggable",
     "dnd"
   ],
-  "author": "Arthur Faria <arthurgomesfaria@gmail.com>",
+  "author": "Redacted",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tutagomes/smooth-dnd.git"
+    "url": "git+https://github.com/test137e9b/smooth-dnd.git"
   },
   "devDependencies": {
     "@babel/core": "7.3.4",
@@ -38,8 +38,8 @@
     "typescript": "3.3.3333"
   },
   "bugs": {
-    "url": "https://github.com/tutagomes/smooth-dnd/issues"
+    "url": "https://github.com/test137e29b/smooth-dnd/issues"
   },
-  "homepage": "https://github.com/tutagomes/smooth-dnd#readme",
+  "homepage": "https://github.com/test137e29b/smooth-dnd#readme",
   "dependencies": {}
 }
