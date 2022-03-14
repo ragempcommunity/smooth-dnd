@@ -1,5 +1,5 @@
 # smooth-dnd
-PS: THIS IS A FORK FROM <a href="https://github.com/kutlugsahin/smooth-dnd/">Smooth-DND</a> with some error handling.
+This is a fork of <a href="https://github.com/kutlugsahin/smooth-dnd/">Smooth-DND</a>, with some additional error handling in place.
 
 A fast and lightweight drag&drop, sortable library for with many configuration options covering many d&d scenarios. There is no external dependencies. It uses css transitions for animations so it's hardware accelerated whenever possible.
 
